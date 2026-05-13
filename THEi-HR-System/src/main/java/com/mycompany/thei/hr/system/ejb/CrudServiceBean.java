@@ -62,7 +62,9 @@ public class CrudServiceBean {
     }
 
     public List<TrainingEnrollment> getAllEnrollments() {
-        return em.createQuery("SELECT t FROM TrainingEnrollment t", TrainingEnrollment.class).getResultList();
+        return em.createQuery("SELECT t FROM TrainingEnrollment t", TrainingEnrollment.class)
+                 .setHint("javax.persistence.cache.storeMode", "REFRESH")
+                 .getResultList();
     }
 
     public void addPaymentRecord(FeePaymentRecord record) {
@@ -75,6 +77,7 @@ public class CrudServiceBean {
 
     public List<PaymentWarning> getActiveWarnings() {
         TypedQuery<PaymentWarning> q = em.createQuery("SELECT w FROM PaymentWarning w WHERE w.active = true", PaymentWarning.class);
+        q.setHint("javax.persistence.cache.storeMode", "REFRESH");
         return q.getResultList();
     }
 

@@ -52,8 +52,12 @@ public class DashboardController implements Serializable {
 
     public String getDaysRemainingMessage(TrainingEnrollment enrollment) {
         long days = calculateDaysToCancellation(enrollment);
-        if (days < 0) {
-            return "OVERDUE – already cancelled";
+        if (enrollment.isPaymentOverdue() && days < 0) {
+            return "OVERDUE – Cancellation Pending";
+        } else if (enrollment.isPaymentOverdue()) {
+            return "OVERDUE – Payment Required";
+        } else if (days < 0) {
+            return "WARNING – Start Date approaching";
         }
         return days + " days until cancellation";
     }
