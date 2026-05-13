@@ -30,6 +30,7 @@ For demonstration purposes, the system uses the following default credentials (s
 
 ## Assignment Features Implemented
 - **Dashboard:** Live overview of active enrollments with real-time active warnings mapped explicitly from the database (JPA Cache refreshed automatically).
-- **Employee Management:** Full CRUD operations on employee profiles, complete with strict JSF UI constraints and regex matching for HKIDs.
+- **Employee Management:** Full CRUD operations on employee profiles, complete with strict JSF UI constraints, mandatory field enforcement, and regex matching for HKIDs and Email addresses.
 - **Enrollment Management:** Link multiple employees to training programs. Tracks multi-part partial fee payments with exact currency formatting.
 - **Asynchronous EJB Timer:** Configured for demonstration purposes to scan for unpaid enrollments. (Note: The timer has been configured to fire a warning 30 seconds after enrollment creation for easy examiner grading and testing without waiting days).
+- **Codebase Documentation:** Fully integrated JavaDoc method annotations and HTML block architectures on all UI components to guarantee developer maintainability.

@@ -28,7 +28,7 @@ The presentation layer leverages JavaServer Faces (JSF) with Facelets and Bootst
 
 *   **`login.xhtml` & `LoginController`:** Serves as the security entry point, validating administrator credentials against a hardcoded, SHA-256 hashed verification system.
 *   **`index.xhtml` & `DashboardController`:** Acts as the main hub. It processes live database feeds, calculating days-to-cancellation for courses and visualizing critical automated warnings triggered by the EJB Timer.
-*   **`employees.xhtml` & `EmployeeController`:** Provides the interface for personnel management. The controller heavily applies Jakarta Bean Validation (e.g., Regex patterns for HKID formatting) before passing entities to the EJB layer.
+*   **`employees.xhtml` & `EmployeeController`:** Provides the interface for personnel management. The controller heavily applies Jakarta Bean Validation (e.g., strict mandatory fields, Regex patterns for HKID and Email formatting) before passing entities to the EJB layer.
 *   **`enrollment.xhtml` & `EnrollmentController`:** Facilitates the creation of new training programs. The controller manages a transactional flow where multiple employees can be selected and linked to a single course using a Many-to-Many entity relationship.
 *   **`editEnrollment.xhtml` & `EditEnrollmentController`:** Dedicated views for safely modifying existing upcoming schedules and descriptions.
 *   **`enrollmentDetail.xhtml` & `EnrollmentDetailController`:** Represents a specific training portal. This controller dynamically computes total financial balances, accepts custom installment inputs, and displays historical ledger entries.
