@@ -79,9 +79,9 @@
                                         </h:outputText>
                                     </td>
                                 </tr>
-                                <tr><th>Total Fee:</th><td><h:outputText value="$#{enrollmentDetailController.enrollment.totalTrainingFee}"><f:convertNumber pattern="#,##0.00" /></h:outputText></td></tr>
-                                <tr><th>Total Paid:</th><td><h:outputText value="$#{enrollmentDetailController.totalPaid}" styleClass="text-success"><f:convertNumber pattern="#,##0.00" /></h:outputText></td></tr>
-                                <tr><th>Remaining:</th><td><h:outputText value="$#{enrollmentDetailController.remainingBalance}" styleClass="text-danger fw-bold"><f:convertNumber pattern="#,##0.00" /></h:outputText></td></tr>
+                                <tr><th>Total Fee:</th><td>$<h:outputText value="#{enrollmentDetailController.enrollment.totalTrainingFee}"><f:convertNumber pattern="#,##0.00" /></h:outputText></td></tr>
+                                <tr><th>Total Paid:</th><td>$<h:outputText value="#{enrollmentDetailController.totalPaid}" styleClass="text-success"><f:convertNumber pattern="#,##0.00" /></h:outputText></td></tr>
+                                <tr><th>Remaining:</th><td>$<h:outputText value="#{enrollmentDetailController.remainingBalance}" styleClass="text-danger fw-bold"><f:convertNumber pattern="#,##0.00" /></h:outputText></td></tr>
                             </table>
                         </div>
                     </div>
@@ -133,7 +133,7 @@
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">Amount Paid</f:facet>
-                                    <h:outputText value="$#{payment.amountPaid}">
+                                    $<h:outputText value="#{payment.amountPaid}">
                                         <f:convertNumber pattern="#,##0.00" />
                                     </h:outputText>
                                 </h:column>
