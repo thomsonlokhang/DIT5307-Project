@@ -146,7 +146,7 @@
                                             <h:outputLabel value="Add New Payment Amount ($):" styleClass="col-form-label fw-bold" />
                                         </div>
                                         <div class="col-auto">
-                                            <h:inputText value="#{enrollmentDetailController.newPaymentAmount}" styleClass="form-control" a:type="number" a:min="0" />
+                                            <h:inputText value="#{enrollmentDetailController.newPaymentAmount}" label="Payment Amount" styleClass="form-control" a:type="number" a:min="0" a:step="0.01" />
                                         </div>
                                         <div class="col-auto">
                                             <h:commandButton value="Add Payment" action="#{enrollmentDetailController.addPayment}" styleClass="btn btn-primary" />

@@ -31,11 +31,11 @@
             <h:form>
                 <div class="mb-3">
                     <h:outputLabel for="username" value="Username" class="form-label fw-bold" />
-                    <h:inputText id="username" value="#{loginController.username}" styleClass="form-control" />
+                    <h:inputText id="username" value="#{loginController.username}" label="Username" styleClass="form-control" />
                 </div>
                 <div class="mb-4">
                     <h:outputLabel for="password" value="Password" class="form-label fw-bold" />
-                    <h:inputSecret id="password" value="#{loginController.password}" styleClass="form-control" />
+                    <h:inputSecret id="password" value="#{loginController.password}" label="Password" styleClass="form-control" />
                 </div>
                 <div class="d-grid">
                     <h:commandButton value="Login" action="#{loginController.login}" styleClass="btn btn-primary btn-lg" />

@@ -55,24 +55,26 @@
                             
                             <div class="col-md-12">
                                 <h:outputLabel value="Program Description:" styleClass="form-label fw-bold"/>
-                                <h:inputTextarea value="#{enrollmentController.enrollment.programDescription}" rows="3" styleClass="form-control"/>
+                                <h:inputTextarea value="#{enrollmentController.enrollment.programDescription}" label="Program Description" rows="3" styleClass="form-control"/>
                             </div>
                             
                             <div class="col-md-4">
                                 <h:outputLabel value="Total Fee ($):" styleClass="form-label fw-bold"/>
-                                <h:inputText value="#{enrollmentController.enrollment.totalTrainingFee}" required="true" styleClass="form-control" a:type="number" a:min="0"/>
+                                <h:inputText value="#{enrollmentController.enrollment.totalTrainingFee}" label="Total Fee" required="true" requiredMessage="Total Fee is required." styleClass="form-control" a:type="number" a:min="0" a:step="0.01">
+                                    <f:convertNumber pattern="0.00" />
+                                </h:inputText>
                             </div>
                             
                             <div class="col-md-4">
                                 <h:outputLabel value="Enrollment Date:" styleClass="form-label fw-bold"/>
-                                <h:inputText value="#{enrollmentController.enrollment.enrollmentDate}" required="true" requiredMessage="Enrollment date required" styleClass="form-control" a:placeholder="e.g. 2026-05-13">
+                                <h:inputText value="#{enrollmentController.enrollment.enrollmentDate}" label="Enrollment Date" required="true" requiredMessage="Enrollment date is required" converterMessage="Enrollment Date must be in yyyy-MM-dd format" styleClass="form-control" a:placeholder="e.g. 2026-05-13">
                                     <f:convertDateTime pattern="yyyy-MM-dd" timeZone="Asia/Hong_Kong" />
                                 </h:inputText>
                             </div>
                             
                             <div class="col-md-4">
                                 <h:outputLabel value="Start Date:" styleClass="form-label fw-bold"/>
-                                <h:inputText value="#{enrollmentController.enrollment.trainingStartDate}" required="true" requiredMessage="Start date required" styleClass="form-control" a:placeholder="e.g. 2026-05-20">
+                                <h:inputText value="#{enrollmentController.enrollment.trainingStartDate}" label="Start Date" required="true" requiredMessage="Start date is required" converterMessage="Start Date must be in yyyy-MM-dd format" styleClass="form-control" a:placeholder="e.g. 2026-05-20">
                                     <f:convertDateTime pattern="yyyy-MM-dd" timeZone="Asia/Hong_Kong" />
                                 </h:inputText>
                             </div>
