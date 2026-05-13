@@ -43,7 +43,12 @@
 
         <div class="container">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="mb-0">Enrollment ##{enrollmentDetailController.enrollment.id} Details</h2>
+                <div class="d-flex align-items-center gap-3">
+                    <h2 class="mb-0">Enrollment ##{enrollmentDetailController.enrollment.id} Details</h2>
+                    <h:link outcome="editEnrollment" value="Edit" styleClass="btn btn-sm btn-outline-secondary">
+                        <f:param name="id" value="#{enrollmentDetailController.enrollment.id}" />
+                    </h:link>
+                </div>
                 <h:form>
                     <h:commandButton value="Mark as Fully Paid" action="#{enrollmentDetailController.markAsFullyPaid}" rendered="#{not enrollmentDetailController.enrollment.fullyPaid}" styleClass="btn btn-success fw-bold shadow-sm" />
                 </h:form>
@@ -74,7 +79,9 @@
                                         </h:outputText>
                                     </td>
                                 </tr>
-                                <tr><th>Total Fee:</th><td><h:outputText value="$#{enrollmentDetailController.enrollment.totalTrainingFee}" /></td></tr>
+                                <tr><th>Total Fee:</th><td><h:outputText value="$#{enrollmentDetailController.enrollment.totalTrainingFee}"><f:convertNumber pattern="#,##0.00" /></h:outputText></td></tr>
+                                <tr><th>Total Paid:</th><td><h:outputText value="$#{enrollmentDetailController.totalPaid}" styleClass="text-success"><f:convertNumber pattern="#,##0.00" /></h:outputText></td></tr>
+                                <tr><th>Remaining:</th><td><h:outputText value="$#{enrollmentDetailController.remainingBalance}" styleClass="text-danger fw-bold"><f:convertNumber pattern="#,##0.00" /></h:outputText></td></tr>
                             </table>
                         </div>
                     </div>
@@ -132,7 +139,7 @@
                                 </h:column>
                             </h:dataTable>
                             
-                            <div class="card bg-light border-0">
+                            <h:panelGroup layout="block" styleClass="card bg-light border-0" rendered="#{not enrollmentDetailController.enrollment.fullyPaid}">
                                 <div class="card-body">
                                     <h:form styleClass="row g-3 align-items-center">
                                         <div class="col-auto">
@@ -146,7 +153,7 @@
                                         </div>
                                     </h:form>
                                 </div>
-                            </div>
+                            </h:panelGroup>
                         </div>
                     </div>
                 </div>

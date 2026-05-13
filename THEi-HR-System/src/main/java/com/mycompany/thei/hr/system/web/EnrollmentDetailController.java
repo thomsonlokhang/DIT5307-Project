@@ -26,6 +26,20 @@ public class EnrollmentDetailController implements Serializable {
         }
     }
 
+    public double getTotalPaid() {
+        if (enrollment == null || enrollment.getFeePaymentRecords() == null) return 0.0;
+        double total = 0.0;
+        for (FeePaymentRecord record : enrollment.getFeePaymentRecords()) {
+            total += record.getAmountPaid();
+        }
+        return total;
+    }
+
+    public double getRemainingBalance() {
+        if (enrollment == null) return 0.0;
+        return Math.max(0.0, enrollment.getTotalTrainingFee() - getTotalPaid());
+    }
+
     public String markAsFullyPaid() {
         if (enrollment != null) {
             enrollment.setFullyPaid(true);
@@ -37,7 +51,8 @@ public class EnrollmentDetailController implements Serializable {
     }
 
     public String addPayment() {
-        if (enrollment != null && newPaymentAmount >= 0) {
+        if (enrollment != null && newPaymentAmount > 0 && !enrollment.isFullyPaid()) {
+            // Validate that we don't overpay significantly past balance or simply that it's not already paid
             FeePaymentRecord newRecord = new FeePaymentRecord();
             newRecord.setAmountPaid(newPaymentAmount);
             
@@ -45,12 +60,7 @@ public class EnrollmentDetailController implements Serializable {
             enrollment.addPayment(newRecord);
             
             // Calculate total paid so far
-            double totalPaid = 0.0;
-            if (enrollment.getFeePaymentRecords() != null) {
-                for (FeePaymentRecord record : enrollment.getFeePaymentRecords()) {
-                    totalPaid += record.getAmountPaid();
-                }
-            }
+            double totalPaid = getTotalPaid();
 
             // Auto-update to fully paid if total payments equal or exceed the total fee
             if (totalPaid >= enrollment.getTotalTrainingFee()) {

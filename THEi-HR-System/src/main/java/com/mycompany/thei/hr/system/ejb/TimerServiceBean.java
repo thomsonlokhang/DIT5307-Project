@@ -27,8 +27,8 @@ public class TimerServiceBean {
         
         // --- For Demo Video --- 
         // Uncomment the lines below to trigger the timer in 30 seconds for easy demonstration
-        // long demoDuration = 30 * 1000; 
-        // timeoutDate = new Date(System.currentTimeMillis() + demoDuration);
+        long demoDuration = 30 * 1000; 
+        timeoutDate = new Date(System.currentTimeMillis() + demoDuration);
         
         // Pass the ID, not the whole object. It's safer and more efficient.
         timerService.createSingleActionTimer(timeoutDate, new TimerConfig(enrollment.getId(), true));

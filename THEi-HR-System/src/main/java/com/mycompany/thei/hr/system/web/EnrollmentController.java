@@ -45,7 +45,9 @@ public class EnrollmentController implements Serializable {
             }
         }
         
-        enrollment.setEnrollmentDate(new java.util.Date());
+        if (enrollment.getEnrollmentDate() == null) {
+            enrollment.setEnrollmentDate(new java.util.Date());
+        }
         
         // Auto-set to fully paid if total fee is $0
         if (enrollment.getTotalTrainingFee() == 0) {

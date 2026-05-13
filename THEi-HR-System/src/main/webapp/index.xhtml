@@ -62,7 +62,10 @@
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">Program</f:facet>
-                                    <strong><h:outputText value="#{warning.associatedEnrollment.programName}" /></strong>
+                                    <h:link outcome="enrollmentDetail" styleClass="fw-bold text-decoration-none">
+                                        <f:param name="id" value="#{warning.associatedEnrollment.id}" />
+                                        <h:outputText value="#{warning.associatedEnrollment.programName}" />
+                                    </h:link>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">Status</f:facet>
