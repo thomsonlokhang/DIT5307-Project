@@ -27,6 +27,9 @@ public class EnrollmentController implements Serializable {
     private List<Employee> allEmployees;
     private List<Long> selectedEmployeeIds;
 
+    /**
+     * Initializes a fresh enrollment instance and loads available employees for the selection list.
+     */
     @PostConstruct
     public void init() {
         this.enrollment = new TrainingEnrollment();
@@ -34,6 +37,13 @@ public class EnrollmentController implements Serializable {
         this.selectedEmployeeIds = new ArrayList<>();
     }
 
+    /**
+     * Saves the new training enrollment form. 
+     * Iterates through the list of checked UI checkboxes to link employees via their ID.
+     * Also delegates to the TimerService to begin calculating upcoming payment deadlines.
+     * 
+     * @return JSF navigation string to redirect back to the home dashboard.
+     */
     public String saveEnrollment() {
         // Add selected employees to the enrollment entity
         if (selectedEmployeeIds != null && !selectedEmployeeIds.isEmpty()) {

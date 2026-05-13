@@ -22,11 +22,17 @@ public class DashboardController implements Serializable {
     private List<PaymentWarning> activeWarnings;
     private List<TrainingEnrollment> allEnrollments;
 
+    /**
+     * Initializes the view by populating warnings and enrollments.
+     */
     @PostConstruct
     public void init() {
         refreshDashboard();
     }
 
+    /**
+     * Fetches current active warnings (sorted by urgency) and all enrollments from the database.
+     */
     public void refreshDashboard() {
         activeWarnings = crudService.getActiveWarnings();
         // Sort warnings by days remaining until cancellation (ascending)
@@ -39,6 +45,13 @@ public class DashboardController implements Serializable {
         allEnrollments = crudService.getAllEnrollments();
     }
 
+    /**
+     * Calculates the remaining time before an un-paid enrollment is officially cancelled.
+     * Business Rule: Cancellation occurs 21 days before the training start date.
+     * 
+     * @param enrollment The training enrollment to check
+     * @return The number of days remaining until cancellation threshold
+     */
     private long calculateDaysToCancellation(TrainingEnrollment enrollment) {
         if (enrollment == null || enrollment.getTrainingStartDate() == null) {
             return 0;
@@ -50,6 +63,13 @@ public class DashboardController implements Serializable {
         return timeDiff / millisInDay;
     }
 
+    /**
+     * Generates a contextual warning message based on how close the start date is, 
+     * and whether the EJB timer has officially flagged it as overdue.
+     * 
+     * @param enrollment The enrollment associated with the warning
+     * @return A user-friendly string indicating the severity of the warning
+     */
     public String getDaysRemainingMessage(TrainingEnrollment enrollment) {
         long days = calculateDaysToCancellation(enrollment);
         if (enrollment.isPaymentOverdue() && days < 0) {

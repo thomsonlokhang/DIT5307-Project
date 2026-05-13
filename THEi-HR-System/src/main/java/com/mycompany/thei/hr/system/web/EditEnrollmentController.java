@@ -26,12 +26,19 @@ public class EditEnrollmentController implements Serializable {
     private List<Employee> allEmployees;
     private List<Long> selectedEmployeeIds;
 
+    /**
+     * Bootstraps the controller by pulling all known employees for population into the multi-select menu.
+     */
     @PostConstruct
     public void init() {
         this.allEmployees = crudService.getAllEmployees();
         this.selectedEmployeeIds = new ArrayList<>();
     }
 
+    /**
+     * Pulls the enrollment data into memory corresponding to the passed URI context ID.
+     * Restores selected employee checkboxes.
+     */
     public void loadEnrollment() {
         if (enrollmentId != null && enrollment == null) {
             this.enrollment = crudService.findEnrollmentById(enrollmentId);
@@ -46,6 +53,12 @@ public class EditEnrollmentController implements Serializable {
         }
     }
 
+    /**
+     * Fully replaces the enrollment's collection of mapped employees based on the new UI selection
+     * and forces an entity merge cascade update.
+     * 
+     * @return JSF Navigation string back to the central dashboard index.
+     */
     public String updateEnrollment() {
         if (enrollment != null) {
             // Clear current employees to rebuild the list

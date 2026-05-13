@@ -22,12 +22,22 @@ public class EmployeeController implements Serializable {
     private List<Employee> employeeList;
     private Employee newEmployee;
 
+    /**
+     * Bootstraps the view by creating an empty employee entity for the registration form
+     * and fetching the latest known list of employees for the data table.
+     */
     @PostConstruct
     public void init() {
         employeeList = crudService.getAllEmployees();
         newEmployee = new Employee();
     }
 
+    /**
+     * Executes strict business logic constraints before persisting a new employee.
+     * Prevents database corruption by halting the cascade if an identical Email or HKID already exists.
+     * 
+     * @return A JSF navigation redirect on success, or null to halt navigation and display error messages.
+     */
     public String saveEmployee() {
         if (newEmployee.getEmailAddress() != null && !newEmployee.getEmailAddress().trim().isEmpty()) {
             if (crudService.findEmployeeByEmail(newEmployee.getEmailAddress()) != null) {

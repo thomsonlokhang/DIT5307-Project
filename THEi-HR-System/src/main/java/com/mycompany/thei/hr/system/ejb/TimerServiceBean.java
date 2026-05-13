@@ -18,6 +18,12 @@ public class TimerServiceBean {
     @EJB
     private CrudServiceBean crudService;
 
+    /**
+     * Creates a timer to repeatedly check or warn about upcoming training payments.
+     * Currently configured for a 30-second demo duration before triggering the timeout.
+     * 
+     * @param enrollment The training enrollment entity to attach to the timer
+     */
     public void createPaymentWarningTimer(TrainingEnrollment enrollment) {
         // Production logic: 30 days before the training start date
         java.util.Calendar cal = java.util.Calendar.getInstance();
@@ -35,6 +41,12 @@ public class TimerServiceBean {
         System.out.println("Timer created for Enrollment ID: " + enrollment.getId() + " to expire on " + timeoutDate);
     }
 
+    /**
+     * Callback method executed when the created timer expires.
+     * Checks if the enrollment is fully paid; if not, marks it as overdue and creates a warning.
+     * 
+     * @param timer The EJB Timer object containing the associated enrollment ID as its info
+     */
     @Timeout
     public void timeout(Timer timer) {
         Long enrollmentId = (Long) timer.getInfo();

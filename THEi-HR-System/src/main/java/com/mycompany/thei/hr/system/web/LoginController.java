@@ -17,6 +17,12 @@ public class LoginController implements Serializable {
     // SHA-256 Hash of "password"
     private static final String EXPECTED_HASH = "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8";
 
+    /**
+     * Authenticates the user against a hardcoded credential set hashing check.
+     * Prevents access to the rest of the application unless passed.
+     * 
+     * @return JSF navigation string redirecting to Dashboard if success, or reloading login if failure.
+     */
     public String login() {
         if ("hr".equals(username) && EXPECTED_HASH.equals(hashPassword(password))) {
             loggedIn = true;
@@ -25,6 +31,13 @@ public class LoginController implements Serializable {
         return "login";
     }
 
+    /**
+     * Converts a raw string password into a non-reversible SHA-256 hash
+     * for comparison against the stored application hash token.
+     * 
+     * @param pass The plain text string to convert.
+     * @return A hexadecimal hashed string
+     */
     private String hashPassword(String pass) {
         if (pass == null) return null;
         try {
