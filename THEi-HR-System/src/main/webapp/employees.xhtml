@@ -69,38 +69,46 @@
                             <div class="col-md-6">
                                 <h:outputLabel value="First Name: *" styleClass="form-label fw-bold text-danger"/>
                                 <h:inputText id="firstName" value="#{employeeController.newEmployee.firstName}" required="true" requiredMessage="First Name is required." styleClass="form-control" />
+                                <h:message for="firstName" styleClass="text-danger small mt-1 d-block" />
                             </div>
                             <div class="col-md-6">
                                 <h:outputLabel value="Last Name: *" styleClass="form-label fw-bold text-danger"/>
                                 <h:inputText id="lastName" value="#{employeeController.newEmployee.lastName}" required="true" requiredMessage="Last Name is required." styleClass="form-control"/>
+                                <h:message for="lastName" styleClass="text-danger small mt-1 d-block" />
                             </div>
                             
                             <div class="col-md-4">
                                 <h:outputLabel value="Title:" styleClass="form-label fw-bold"/>
-                                <h:inputText value="#{employeeController.newEmployee.title}" styleClass="form-control" html5:placeholder="MR, MS, DR"/>
+                                <h:inputText id="title" value="#{employeeController.newEmployee.title}" styleClass="form-control" html5:placeholder="MR, MS, DR"/>
+                                <h:message for="title" styleClass="text-danger small mt-1 d-block" />
                             </div>
                             <div class="col-md-4">
                                 <h:outputLabel value="Employee ID: *" styleClass="form-label fw-bold text-danger"/>
-                                <h:inputText value="#{employeeController.newEmployee.employeeIdNumber}" required="true" requiredMessage="Employee ID is required." styleClass="form-control"/>
+                                <h:inputText id="empId" value="#{employeeController.newEmployee.employeeIdNumber}" required="true" requiredMessage="Employee ID is required." styleClass="form-control"/>
+                                <h:message for="empId" styleClass="text-danger small mt-1 d-block" />
                             </div>
                             <div class="col-md-4">
                                 <h:outputLabel value="HKID: *" styleClass="form-label fw-bold text-danger"/>
                                 <h:inputText id="hkid" value="#{employeeController.newEmployee.hkidNumber}" required="true" requiredMessage="HKID is required." validatorMessage="Invalid HKID format" styleClass="form-control">
                                     <f:validateRegex pattern="^[A-Za-z]{1,2}[0-9]{6}\(?[0-9Aa]\)?$" />
                                 </h:inputText>
+                                <h:message for="hkid" styleClass="text-danger small mt-1 d-block" />
                             </div>
 
                             <div class="col-md-4">
                                 <h:outputLabel value="Department:" styleClass="form-label fw-bold"/>
-                                <h:inputText value="#{employeeController.newEmployee.department}" styleClass="form-control"/>
+                                <h:inputText id="dept" value="#{employeeController.newEmployee.department}" styleClass="form-control"/>
+                                <h:message for="dept" styleClass="text-danger small mt-1 d-block" />
                             </div>
                             <div class="col-md-4">
                                 <h:outputLabel value="Mobile Phone:" styleClass="form-label fw-bold"/>
-                                <h:inputText value="#{employeeController.newEmployee.mobilePhoneNumber}" styleClass="form-control"/>
+                                <h:inputText id="mobile" value="#{employeeController.newEmployee.mobilePhoneNumber}" styleClass="form-control"/>
+                                <h:message for="mobile" styleClass="text-danger small mt-1 d-block" />
                             </div>
                             <div class="col-md-12">
                                 <h:outputLabel value="Email:" styleClass="form-label fw-bold"/>
-                                <h:inputText value="#{employeeController.newEmployee.emailAddress}" styleClass="form-control"/>
+                                <h:inputText id="email" value="#{employeeController.newEmployee.emailAddress}" styleClass="form-control"/>
+                                <h:message for="email" styleClass="text-danger small mt-1 d-block" />
                             </div>
                         </div>
 
