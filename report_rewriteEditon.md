@@ -1,18 +1,4 @@
----
-marp: true
-theme: default
-size: A4-portrait
-style: |
-  /* 定義 A4 直向的專屬尺寸 */
-  section {
-    width: 210mm;
-    height: 297mm;
-    font-size: 2rem; /* 調小預設字體以適應 A4 排版 */
-    padding: 20mm;   /* 設定邊距 */
-  }
----
-
-# DIT5307 Brief Development Report: THEi HR System
+# DIT5307 Brief Development Report: **THEi HR System**
 
 **Student 1 Name:** Chu Lok Hang Thomson  
 **Student 1 ID:** 250511652  
@@ -104,7 +90,7 @@ The domain model is implemented using JPA entity relationships reflecting core H
 - Warning records are generated automatically when compliance rules detect risk (e.g., unpaid balance near course start date).
 
 **UML Class Diagram:**  
-![UML Class Diagram for THEi HR System](/image/DIT5307%20Project%20UML%20Diagram.svg)
+`/DIT5307-Project/image/DIT5307%20Project%20UML%20Diagram.svg`  
 *Figure 1: UML Class Diagram for the THEi HR System*
 
 ---
